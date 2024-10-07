@@ -29,7 +29,7 @@ namespace BibliotecaClases
         }
 
 
-        // Restablecer cualquier formulario (asume que los componentes tienen nombres comunes)
+        // Restablecer el formulario 
         public static void ReestablecerFormulario(ComboBox cboCliente, ComboBox cboFormaPago, ComboBox cboArticulo, DataGridView dtgGrilla, Label lblCodigo, Label lblCondCliente, Label lblDescripcion, Label lblPrecioUnitario, TextBox txtObservaciones)
         {
             cboCliente.ResetText();
