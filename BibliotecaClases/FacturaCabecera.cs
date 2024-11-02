@@ -21,31 +21,98 @@ public class FacturaCabecera
     private string _observaciones;
 
     // Propiedades públicas
-    public int IdFactura { get => _idFactura; set => _idFactura = value; }
-    public string NumeroFactura { get => _numeroFactura; set => _numeroFactura = value; }
-    public DateTime Fecha { get => _fecha; set => _fecha = value; }
-    public int IdCliente { get => _idCliente; set => _idCliente = value; }
-    public int IdEmpresa { get => _idEmpresa; set => _idEmpresa = value; }
-    public int IdFormaPago { get => _idFormaPago; set => _idFormaPago = value; }
-    public string TipoFactura { get => _tipoFactura; set => _tipoFactura = value; }
-    public string CAE { get => _cae; set => _cae = value; }
-    public DateTime FechaVencimientoCAE { get => _fechaVencimientoCAE; set => _fechaVencimientoCAE = value; }
-    public decimal SubTotal { get => _subTotal; set => _subTotal = value; }
-    public decimal Iva { get => _iva; set => _iva = value; }
-    public decimal Total { get => _total; set => _total = value; }
-    public string Observaciones { get => _observaciones; set => _observaciones = value; }
+    public int IdFactura
+    {
+        get { return _idFactura; }
+        set { _idFactura = value; }
+    }
 
-    // Método para insertar en la base de datos
+    public string NumeroFactura
+    {
+        get { return _numeroFactura; }
+        set { _numeroFactura = value; }
+    }
+
+    public DateTime Fecha
+    {
+        get { return _fecha; }
+        set { _fecha = value; }
+    }
+
+    public int IdCliente
+    {
+        get { return _idCliente; }
+        set { _idCliente = value; }
+    }
+
+    public int IdEmpresa
+    {
+        get { return _idEmpresa; }
+        set { _idEmpresa = value; }
+    }
+
+    public int IdFormaPago
+    {
+        get { return _idFormaPago; }
+        set { _idFormaPago = value; }
+    }
+
+    public string TipoFactura
+    {
+        get { return _tipoFactura; }
+        set { _tipoFactura = value; }
+    }
+
+    public string CAE
+    {
+        get { return _cae; }
+        set { _cae = value; }
+    }
+
+    public DateTime FechaVencimientoCAE
+    {
+        get { return _fechaVencimientoCAE; }
+        set { _fechaVencimientoCAE = value; }
+    }
+
+    public decimal SubTotal
+    {
+        get { return _subTotal; }
+        set { _subTotal = value; }
+    }
+
+    public decimal Iva
+    {
+        get { return _iva; }
+        set { _iva = value; }
+    }
+
+    public decimal Total
+    {
+        get { return _total; }
+        set { _total = value; }
+    }
+
+    public string Observaciones
+    {
+        get { return _observaciones; }
+        set { _observaciones = value; }
+    }
+
+    // Método para insertar los datos de la cabecera de la factura en la base de datos
     public void InsertarFacturaCabecera()
     {
         try
         {
+            // Conexión a la base de datos
             using (SqlConnection conn = Conexion.ObtenerConexion())
             {
                 conn.Open();
+                // Query SQL para insertar los datos en la tabla FacturaCabecera
                 string query = @"INSERT INTO FacturaCabecera 
                                  (NumeroFactura, Fecha, IdCliente, IdEmpresa, IdFormaPago, TipoFactura, CAE, FechaVencimientoCAE, SubTotal, Iva, Total, Observaciones) 
                                  VALUES (@NumeroFactura, @Fecha, @IdCliente, @IdEmpresa, @IdFormaPago, @TipoFactura, @CAE, @FechaVencimientoCAE, @SubTotal, @Iva, @Total, @Observaciones)";
+                // Preparar el comando con los parámetros
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@NumeroFactura", NumeroFactura);
@@ -59,37 +126,42 @@ public class FacturaCabecera
                     cmd.Parameters.AddWithValue("@SubTotal", SubTotal);
                     cmd.Parameters.AddWithValue("@Iva", Iva);
                     cmd.Parameters.AddWithValue("@Total", Total);
+                    // Si las observaciones son nulas, se coloca DBNull.Value
                     cmd.Parameters.AddWithValue("@Observaciones", Observaciones ?? (object)DBNull.Value);
 
-                    cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery(); // Ejecutar la query
                 }
             }
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Error al insertar la cabecera de la factura: " + ex.Message);
+            MessageBox.Show("Error al insertar la cabecera de la factura: " + ex.Message);
         }
     }
 
+    // Método para calcular el total de la factura recorriendo el DataGridView de los artículos
     public decimal CalcularTotalFactura(DataGridView dtgGrilla)
     {
         decimal totalFactura = 0;
 
         foreach (DataGridViewRow row in dtgGrilla.Rows)
         {
+            // Si el valor de la celda "Total" no es nulo, lo suma al total
             if (row.Cells["Total"].Value != null)
             {
                 totalFactura += Convert.ToDecimal(row.Cells["Total"].Value.ToString().Replace("$", ""));
             }
         }
 
-        return totalFactura;
+        return totalFactura; // Retorna el total calculado
     }
 
+    // Método para obtener el último ID insertado de la tabla FacturaCabecera
     public int ObtenerIdFacturaCabecera()
     {
-        int nuevoIdFactura = 1;
+        int nuevoIdFactura = 1; // Valor inicial por defecto
 
+        // Consulta SQL para obtener el mayor ID de la tabla FacturaCabecera
         string query = "SELECT ISNULL(MAX(IdFactura), 0) FROM FacturaCabecera";
 
         using (SqlConnection conn = Conexion.ObtenerConexion())
@@ -98,7 +170,7 @@ public class FacturaCabecera
             try
             {
                 conn.Open();
-                nuevoIdFactura = (int)cmd.ExecuteScalar();
+                nuevoIdFactura = (int)cmd.ExecuteScalar(); // Obtener el ID de la factura
             }
             catch (Exception ex)
             {
@@ -106,7 +178,7 @@ public class FacturaCabecera
             }
         }
 
-        return nuevoIdFactura;
+        return nuevoIdFactura; // Retornar el nuevo ID
     }
 
     // Método para generar el número de factura y retornarlo
@@ -123,6 +195,7 @@ public class FacturaCabecera
     {
         Random random = new Random();
         string cae = "";
+        // Generar un CAE aleatorio de 14 dígitos
         for (int i = 0; i < 14; i++)
         {
             cae += random.Next(0, 9).ToString();
@@ -138,9 +211,10 @@ public class FacturaCabecera
         return FechaVencimientoCAE;  // Retorna la fecha de vencimiento del CAE
     }
 
-    // Sobrescribir el método ToString para mostrar el número y la fecha en el ComboBox
+    // Sobrescribir el método ToString para mostrar el número y la fecha
     public override string ToString()
     {
-        return $"Factura N° {NumeroFactura} - {Fecha.ToShortDateString()}";
+        // Formatear la representación de la factura con el número y la fecha
+        return $"Factura N° {NumeroFactura} - {Fecha.ToShortDateString()}"; // Esto se muestra en el combobox de busqueda
     }
 }

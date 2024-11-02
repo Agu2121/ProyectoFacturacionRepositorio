@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsForms
@@ -16,7 +13,17 @@ namespace WindowsForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Facturacion());
+
+            // Crear una instancia del formulario de inicio de sesión.
+            InicioSesion formularioInicio = new InicioSesion();
+
+            Application.Run(formularioInicio);
+
+            // Si el formulario de inicio de sesión se cierra, abrir el formulario de facturación.
+            if (formularioInicio.DialogResult == DialogResult.OK)
+            {
+                Application.Run(new Facturacion());
+            }
         }
     }
 }

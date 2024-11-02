@@ -1,5 +1,4 @@
 ﻿using BibliotecaClases;
-using BibliotecaClases_BD;
 using System;
 using System.Windows.Forms;
 
@@ -15,22 +14,20 @@ namespace WindowsForms
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario();
-            usuario.NombreUsuario = txtNombreUsuario.Text;
-            usuario.Contraseña = txtContraseña.Text;
-
             // Validar usuario
-            bool comprobacion = usuario.ValidarUsuario(usuario.NombreUsuario, usuario.Contraseña);
+            bool esValido = usuario.ValidarUsuario(txtNombreUsuario.Text, txtContraseña.Text);
 
-            if (comprobacion)
+            if (esValido)
             {
-                Facturacion facturacion = new Facturacion();
-                facturacion.Show();
-                Hide();
-                
+                // Establecer el DialogResult en OK para indicar que la autenticación fue exitosa.
+                this.DialogResult = DialogResult.OK;
+
+                // Cerrar el formulario de inicio de sesión y se abrirá el formulario de facturación (Programado en el main de Program.cs)
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Datos incorrectos");
+                MessageBox.Show("Datos incorrectos", "Error de Autenticación", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

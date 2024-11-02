@@ -38,7 +38,7 @@ namespace BibliotecaClases
         }
 
 
-        // Método para insertar en la base de datos
+        // Método para insertar un detalle en la base de datos
         public void InsertarFacturaDetalle()
         {
             try

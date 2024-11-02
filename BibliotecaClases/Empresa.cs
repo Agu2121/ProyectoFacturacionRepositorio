@@ -2,7 +2,7 @@
 {
     public class Empresa
     {
-        // Atributos
+        // Atributos privados
         private string _nombre;
         private string _cuit;
         private string _domicilio;
@@ -10,7 +10,7 @@
         private string _provincia;
         private string _condicionIva;
 
-        // Propiedades
+        // Propiedades públicas
         public string Nombre
         {
             get { return _nombre; }

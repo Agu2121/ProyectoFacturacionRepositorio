@@ -8,7 +8,7 @@ namespace BibliotecaClases
 {
     public class Cliente
     {
-        // Atributos
+        // Atributos privados
         private int _idCliente;
         private string _nombre;
         private string _cuit_cuil;
@@ -16,7 +16,7 @@ namespace BibliotecaClases
         private int _idCiudad;
         private int _idCondicionIva;
 
-        // Propiedades
+        // Propiedades públicas
         public int IdCliente
         {
             get { return _idCliente; }
@@ -53,23 +53,29 @@ namespace BibliotecaClases
             set { _idCondicionIva = value; }
         }
 
-        // Método para obtener la lista de clientes
+        // MÉTODO PARA OBTENER LA LISTA DE CLIENTES DESDE LA BASE DE DATOS
         public List<Cliente> ObtenerClientes()
         {
             List<Cliente> listaClientes = new List<Cliente>();
+            // Usar la conexión a la base de datos mediante la clase de conexión
             using (SqlConnection miConexion = Conexion.ObtenerConexion())
             {
                 try
                 {
                     miConexion.Open();
+                    // Definir la consulta SQL para obtener los clientes
                     string consulta = "SELECT IdCliente, Nombre, Cuit_Cuil, Direccion, IdCiudad, IdCondicionIva FROM Cliente";
 
+                    // Crear un comando SQL con la consulta y la conexión
                     using (SqlCommand comando = new SqlCommand(consulta, miConexion))
                     {
+                        // Ejecutar la consulta y obtener los resultados usando un DataReader
                         using (SqlDataReader reader = comando.ExecuteReader())
                         {
+                            // Leer cada fila de los resultados
                             while (reader.Read())
                             {
+                                // Crear un nuevo objeto Cliente para cada fila
                                 Cliente cliente = new Cliente
                                 {
                                     IdCliente = Convert.ToInt32(reader["IdCliente"]),
@@ -79,6 +85,7 @@ namespace BibliotecaClases
                                     IdCiudad = (int)Convert.ToInt64(reader["IdCiudad"]),
                                     IdCondicionIva = (int)Convert.ToInt64(reader["IdCondicionIva"])
                                 };
+                                // Agregar el cliente a la lista de clientes
                                 listaClientes.Add(cliente);
                             }
                         }
@@ -87,15 +94,17 @@ namespace BibliotecaClases
                 catch (Exception ex)
                 {
                     // Manejar excepciones
-                    System.Windows.Forms.MessageBox.Show("Error al obtener los clientes: " + ex.Message);
+                    MessageBox.Show("Error al obtener los clientes: " + ex.Message);
                 }
             }
-
+            // Retornar la lista de clientes obtenida
             return listaClientes;
         }
 
+        // MÉTODO PARA OBTENER LA DESCRIPCIÓN DE LA CONDICIÓN IVA SEGÚN SU ID
         public string ObtenerDescripcionCondicion()
         {
+            // Evaluar el valor del IdCondicionIva y retornar la descripción correspondiente
             switch (IdCondicionIva)
             {
                 case 1:
@@ -111,7 +120,7 @@ namespace BibliotecaClases
             }
         }
 
-        // Método para validar si el cliente ha sido seleccionado
+        // MÉTODO PARA VALIDAR SI UN CLIENTE HA SIDO SELECCIONADO
         public bool ValidarCliente(Cliente clienteSeleccionado)
         {
             if (clienteSeleccionado == null)

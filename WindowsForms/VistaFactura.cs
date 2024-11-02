@@ -10,7 +10,7 @@ namespace WindowsForms
             InitializeComponent();
         }
 
-        public void CargarReporte(ReportDocument report)
+        public void AsignarReporte(ReportDocument report)
         {
             crystalReportViewer3.ReportSource = report;
             crystalReportViewer3.Refresh();

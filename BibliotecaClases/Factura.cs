@@ -2,16 +2,20 @@
 using CrystalDecisions.CrystalReports.Engine;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace BibliotecaClases
 {
+    // Clase que representa una factura completa, con cabecera y detalles
     public class Factura
     {
+        // Propiedades: Cabecera de la factura y una lista de detalles
         public FacturaCabecera Cabecera { get; set; }
         public List<FacturaDetalle> Detalles { get; set; }
 
+        // Constructor: Inicializa la cabecera y la lista de detalles
         public Factura()
         {
             Cabecera = new FacturaCabecera();
@@ -41,14 +45,15 @@ namespace BibliotecaClases
         // Método para agregar detalles a la factura
         public void AgregarDetalles(DataGridView dtgGrilla)
         {
+            // Recorre cada fila de la grilla y crea un detalle de la factura
             foreach (DataGridViewRow row in dtgGrilla.Rows)
             {
                 FacturaDetalle detalle = new FacturaDetalle
                 {
-                    IdFactura = Cabecera.ObtenerIdFacturaCabecera(),
+                    IdFactura = Cabecera.ObtenerIdFacturaCabecera(), // Asocia el detalle a la cabecera de factura
                     IdArticulo = Convert.ToInt32(row.Cells["Codigo"].Value),
                     Cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value),
-                    Importe = Convert.ToDecimal(row.Cells["Total"].Value.ToString().Replace("$", ""))
+                    Importe = Convert.ToDecimal(row.Cells["Total"].Value.ToString().Replace("$", "")) // Obtiene el total del artículo y elimina el símbolo de $
                 };
 
                 // Insertar el detalle en la base de datos
@@ -59,11 +64,9 @@ namespace BibliotecaClases
             }
         }
 
-        // Método para generar la factura completa
+        // Método para generar la factura completa (cabecera y detalles)
         public void GenerarFactura(Cliente clienteSeleccionado, ComboBox cboFormaPago, DataGridView dtgGrilla, TextBox txtObservaciones)
         {
-            Cliente cliente = new Cliente();
-
             // Crear la cabecera e insertar en la base de datos
             CrearCabecera(clienteSeleccionado, cboFormaPago, dtgGrilla, txtObservaciones);
 
@@ -76,20 +79,24 @@ namespace BibliotecaClases
         // Método para obtener todas las facturas de un cliente
         public List<FacturaCabecera> ObtenerFacturasPorCliente(int idCliente)
         {
+            // Consulta SQL para obtener las facturas del cliente
             string query = "SELECT IdFactura, NumeroFactura, Fecha, TipoFactura FROM FacturaCabecera WHERE IdCliente = @IdCliente";
 
             List<FacturaCabecera> facturas = new List<FacturaCabecera>();
 
             try
             {
+                // Abre la conexión a la base de datos
                 using (SqlConnection connection = Conexion.ObtenerConexion())
                 {
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@IdCliente", idCliente);
+                    command.Parameters.AddWithValue("@IdCliente", idCliente); // Asigna el parámetro idCliente
 
                     connection.Open();
+                    // Ejecuta la consulta y lee los resultados
                     SqlDataReader reader = command.ExecuteReader();
 
+                    // Lee los datos de las facturas y los agrega a la lista
                     while (reader.Read())
                     {
                         FacturaCabecera factura = new FacturaCabecera
@@ -106,6 +113,7 @@ namespace BibliotecaClases
             }
             catch (Exception ex)
             {
+                // Maneja los errores y lanza una excepción si ocurre un problema
                 throw new Exception("Error al obtener las facturas: " + ex.Message);
             }
 
@@ -113,7 +121,7 @@ namespace BibliotecaClases
         }
 
         // Método para cargar el reporte dependiendo del tipo de factura
-        public ReportDocument CargarReporte(FacturaCabecera facturaSeleccionada)
+        public ReportDocument CargarReporte(FacturaCabecera facturaSeleccionada, DataSet dsFactura)
         {
             ReportDocument report = new ReportDocument(); // Crear una nueva instancia del reporte
 
@@ -126,8 +134,12 @@ namespace BibliotecaClases
             {
                 report.Load(@"C:\Users\agoro\OneDrive\Escritorio\Segundo año ISP\Programacion 1\Soluciones\ProyectoFacturacion\WindowsForms\FacturaB.rpt");
             }
+            // Asignar el DataSet al reporte
+            report.SetDataSource(dsFactura);
+            // Desactivar las restricciones de integridad referencial para evitar problemas de validación entre tablas al llenar el DataSet
+            dsFactura.EnforceConstraints = false;
 
-            return report; // Retornar el reporte cargado
+            return report;
         }
 
     }
