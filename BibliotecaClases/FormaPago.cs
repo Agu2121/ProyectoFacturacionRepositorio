@@ -65,7 +65,7 @@ namespace BibliotecaClases
                 catch (Exception ex)
                 {
                     // Manejar excepciones
-                    System.Windows.Forms.MessageBox.Show("Error al obtener las formas de pago: " + ex.Message);
+                    MessageBox.Show("Error al obtener las formas de pago: " + ex.Message);
                 }
             }
             return listaFormaPago;

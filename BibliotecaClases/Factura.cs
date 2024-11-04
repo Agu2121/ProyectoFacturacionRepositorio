@@ -76,7 +76,7 @@ namespace BibliotecaClases
             MessageBox.Show("Factura generada exitosamente.");
         }
 
-        // Método para obtener todas las facturas de un cliente
+        // Método para obtener todas las facturas de un cliente por id
         public List<FacturaCabecera> ObtenerFacturasPorCliente(int idCliente)
         {
             // Consulta SQL para obtener las facturas del cliente

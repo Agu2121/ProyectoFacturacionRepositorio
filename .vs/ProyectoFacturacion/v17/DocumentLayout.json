@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D9A767CC-8A3F-4AD1-9F87-9857DBD10095}|WindowsForms\\WindowsForms.csproj|C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\windowsforms\\facturacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D9A767CC-8A3F-4AD1-9F87-9857DBD10095}|WindowsForms\\WindowsForms.csproj|solutionrelative:windowsforms\\facturacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B8CA1B7F-470C-4789-9D5C-C5E701A9E3F8}|BibliotecaClases\\BibliotecaClases.csproj|c:\\users\\agoro\\onedrive\\escritorio\\segundo a\u00F1o isp\\programacion 1\\soluciones\\proyectofacturacion\\bibliotecaclases\\formapago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8CA1B7F-470C-4789-9D5C-C5E701A9E3F8}|BibliotecaClases\\BibliotecaClases.csproj|solutionrelative:bibliotecaclases\\formapago.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8CA1B7F-470C-4789-9D5C-C5E701A9E3F8}|BibliotecaClases\\BibliotecaClases.csproj|C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\bibliotecaclases\\utilidadesformularios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8CA1B7F-470C-4789-9D5C-C5E701A9E3F8}|BibliotecaClases\\BibliotecaClases.csproj|solutionrelative:bibliotecaclases\\utilidadesformularios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D9A767CC-8A3F-4AD1-9F87-9857DBD10095}|WindowsForms\\WindowsForms.csproj|C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\windowsforms\\facturacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D9A767CC-8A3F-4AD1-9F87-9857DBD10095}|WindowsForms\\WindowsForms.csproj|solutionrelative:windowsforms\\facturacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9A767CC-8A3F-4AD1-9F87-9857DBD10095}|WindowsForms\\WindowsForms.csproj|C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\windowsforms\\facturacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,16 +30,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UtilidadesFormularios.cs",
-              "DocumentMoniker": "C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\BibliotecaClases\\UtilidadesFormularios.cs",
-              "RelativeDocumentMoniker": "BibliotecaClases\\UtilidadesFormularios.cs",
-              "ToolTip": "C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\BibliotecaClases\\UtilidadesFormularios.cs",
-              "RelativeToolTip": "BibliotecaClases\\UtilidadesFormularios.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAgwB8AAAAlAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "FormaPago.cs",
+              "DocumentMoniker": "C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\BibliotecaClases\\FormaPago.cs",
+              "RelativeDocumentMoniker": "BibliotecaClases\\FormaPago.cs",
+              "ToolTip": "C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\BibliotecaClases\\FormaPago.cs",
+              "RelativeToolTip": "BibliotecaClases\\FormaPago.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-07T03:35:29.855Z",
+              "WhenOpened": "2024-11-04T03:54:09.725Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Facturacion.cs",
+              "DocumentMoniker": "C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\WindowsForms\\Facturacion.cs",
+              "RelativeDocumentMoniker": "WindowsForms\\Facturacion.cs",
+              "ToolTip": "C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\WindowsForms\\Facturacion.cs",
+              "RelativeToolTip": "WindowsForms\\Facturacion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKgAAABiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-02T17:30:45.113Z"
             },
             {
               "$type": "Document",
@@ -50,21 +62,7 @@
               "ToolTip": "C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\WindowsForms\\Facturacion.cs [Dise\u00F1o]",
               "RelativeToolTip": "WindowsForms\\Facturacion.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T17:55:22.463Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Facturacion.cs",
-              "DocumentMoniker": "C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\WindowsForms\\Facturacion.cs",
-              "RelativeDocumentMoniker": "WindowsForms\\Facturacion.cs",
-              "ToolTip": "C:\\Users\\agoro\\OneDrive\\Escritorio\\Segundo a\u00F1o ISP\\Programacion 1\\Soluciones\\ProyectoFacturacion\\WindowsForms\\Facturacion.cs",
-              "RelativeToolTip": "WindowsForms\\Facturacion.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAABUAAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T23:54:27.824Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-18T18:45:04.36Z"
             }
           ]
         }

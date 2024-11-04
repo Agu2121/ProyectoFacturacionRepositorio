@@ -166,7 +166,7 @@ namespace WindowsForms
 
                 // Llenar el DataSet usando tu TableAdapter
                 var adapter = new DataSetTableAdapters.DataTable1TableAdapter();
-                adapter.FillById(dsFactura.DataTable1, facturaSeleccionada.IdFactura); // Fill es el método del TableAdapter que ejecuta la consulta
+                adapter.FillById(dsFactura.DataTable1, facturaSeleccionada.IdFactura); // FillById es el método del TableAdapter que ejecuta la consulta
 
                 // Crear instancia del reporte
                 ReportDocument report = factura.CargarReporte(facturaSeleccionada, dsFactura);
